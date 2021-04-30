@@ -1,31 +1,29 @@
-{% extends "base.html" %}
+{% extends "base_header.html" %}
+{% load static %}
 
-{% block body %}
+{% block title%}	
+<title>About</title>
+{% endblock %}
+
+{% block content %}
     <div class="container-fluid">
         <main class="tm-main">
             <div class="row tm-row tm-mb-45">
                 <div class="col-12">
                     <hr class="tm-hr-primary tm-mb-55">
-                    <img src="img/about-01.jpg" alt="Image" class="img-fluid">
+                    <img src="{% static 'img/tokyo.jpg' %}" alt="Image" class="img-fluid">
                 </div>
             </div>
             <div class="row tm-row tm-mb-40">
                 <div class="col-12">                    
                     <div class="mb-4">
-                        <h2 class="pt-2 tm-mb-40 tm-color-primary tm-post-title">About this xtra blog</h2>
-                        <p>
-                            You can immediately download 
-                                <a rel="nofollow" href="https://templatemo.com/tm-553-xtra-blog" target="_blank">Xtra Blog Template</a> 
-                                from TemplateMo website for 100% free of charge. Etiam vehicula, tortor ac eleifend tincidunt, diam neque pellentesque ipsum, 
-                                a geugiat eros mauris eget lorem. Quisque in
-                            bibendum elit, in egestas turpis. Vestibulum ornare sollicitudin congue. Aliquam lorem mi, maximus at iaculis ut, viverra vel
-                            mauris. Duis congue luctus metus, sodales tincidunt lectus fringilla ut. Nunc tempus at magna sed vestibulum.
-                        </p>
-                        <p>
-                            Proin et arcu ligula. Praesent quis erat eu est solliditudin tristique ut in arcu. Donec bibendum ex id ligula semper dictum.
-                            Proin malesuada luctus auctor. Suspendisse ullamcorper, mi vel molestie ornare, arcu magna euismod ipsum, in
-                            malesuada nulla magna ut enim. Morbi lacinia magna sed sapien auctor, vitae luctus nunc cursus.
-                        </p>                            
+                        <h2 class="pt-2 tm-mb-40 tm-color-primary tm-post-title">Legal Alien In TOKYO</h2>
+                        <ul>
+                            <li>Born in S. Korea, 1991</li>
+                            <li>Worked for Arion Communication Company as Field Engineer, 2016 ~ 2018</li>
+                            <li>Graduated from Korean Maritime University - Computer Science, 2019</li>
+                            <li>Working for BASIS Corporation as IT Engineer, 2020 ~</li>
+                        </ul>                         
                     </div>                    
                 </div>
             </div>
@@ -35,12 +33,16 @@
                         <div class="text-center tm-mt-40 tm-mb-60">
                             <i class="fas fa-bezier-curve fa-4x tm-color-primary"></i>                            
                         </div>                        
-                        <h2 class="mb-3 tm-color-primary tm-post-title">Background</h2>
+                        <h2 class="mb-3 tm-color-primary tm-post-title">Language</h2><br>
                         <p class="mb-0 tm-line-height-short">
-                            Phasellus pulvinar nisl ornare leo porttitor, et vestibulum lorem semper. 
-                            Duis risus ex, molestie sit amet magna in,
-                            pharetra pellentesque est. Curabitur elit metus.
-                        </p>
+                            Korean
+                        </p><br>
+                        <p class="mb-0 tm-line-height-short">
+                            English
+                        </p><br>
+                        <p class="mb-0 tm-line-height-short">
+                            Japanese
+                        </p><br>
                     </div>
                 </div>
                 <div class="col-lg-4 tm-about-col">
@@ -48,11 +50,16 @@
                         <div class="text-center tm-mt-40 tm-mb-60">
                             <i class="fas fa-users-cog fa-4x tm-color-primary"></i>                            
                         </div>                        
-                        <h2 class="mb-3 tm-color-primary tm-post-title">Teamwork</h2>
+                        <h2 class="mb-3 tm-color-primary tm-post-title">Interested In</h2><br>
                         <p class="mb-0 tm-line-height-short">
-                            Suspendisse ullamcorper, mi vel molestie ornare, arcu magna euismod ipsum, in malesuada nulla magna ut enim. 
-                            Morbi lacinia magna sed auctor, vitae nunc cursus.
-                        </p>
+                            Web Application - Backend
+                        </p><br>
+                        <p class="mb-0 tm-line-height-short">
+                            Deep Learning - Computer Vision
+                        </p><br>
+                        <p class="mb-0 tm-line-height-short">
+                            Blockchain - Hyperledger Fabric
+                        </p><br>
                     </div>
                 </div>
                 <div class="col-lg-4 tm-about-col">
@@ -60,10 +67,16 @@
                         <div class="text-center tm-mt-40 tm-mb-60">
                             <i class="fab fa-creative-commons-sampling fa-4x tm-color-primary"></i>                            
                         </div>                        
-                        <h2 class="mb-3 tm-color-primary tm-post-title">Our Core Value</h2>
+                        <h2 class="mb-3 tm-color-primary tm-post-title">Value</h2><br>
                         <p class="mb-0 tm-line-height-short">
-                            Nunc mi ante, suscipit vel dapibus et, volutpat sit amet ante. In tempor nec sem vitae varius. Aliquam tincidunt orci sem, et imperdiet massa consectetur nec.
-                        </p>
+                            Challenge
+                        </p><br>
+                        <p class="mb-0 tm-line-height-short">
+                            Commitment
+                        </p><br>
+                        <p class="mb-0 tm-line-height-short">
+                            Consistency
+                        </p><br>
                     </div>
                 </div>
             </div>            
@@ -73,66 +86,14 @@
                 </div>                
                 <div class="col-lg-6 tm-mb-60 tm-person-col">
                     <div class="media tm-person">
-                        <img src="img/about-02.jpg" alt="Image" class="img-fluid mr-4">
                         <div class="media-body">
-                            <h2 class="tm-color-primary tm-post-title mb-2">John Henry</h2>
-                            <h3 class="tm-h3 mb-3">CEO/Founder</h3>
+                            <h2 class="tm-color-primary tm-post-title mb-2">Contact</h2>
                             <p class="mb-0 tm-line-height-short">
-                                Aliquam non vulputate lectus, vel ultricies diam. Suspendisse at ipsum
-                                hendrerit, vestibulum mi id, mattis tortor.
+                                Email : hjm6021@gmail.com
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 tm-mb-60 tm-person-col">
-                    <div class="media tm-person">
-                        <img src="img/about-03.jpg" alt="Image" class="img-fluid mr-4">
-                        <div class="media-body">
-                            <h2 class="tm-color-primary tm-post-title mb-2">Timy Cake</h2>
-                            <h3 class="tm-h3 mb-3">Project Director</h3>
-                            <p class="mb-0 tm-line-height-short">
-                                Quisque in bibendum elit, in egestas turpis. Vestibulum ornare sollicitudin congue. 
-                                Aliquam lorem mi, maximus at iaculis ut.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 tm-mb-60 tm-person-col">
-                    <div class="media tm-person">
-                        <img src="img/about-04.jpg" alt="Image" class="img-fluid mr-4">
-                        <div class="media-body">
-                            <h2 class="tm-color-primary tm-post-title mb-2">Jay Zoona</h2>
-                            <h3 class="tm-h3 mb-3">Supervisor</h3>
-                            <p class="mb-0 tm-line-height-short">
-                                Maecenas eu mi eu dui cursus consequat non eu metus. Morbi ac
-                                turpis eleifend, commodo purus eget, commodo mauris.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 tm-mb-60 tm-person-col">
-                    <div class="media tm-person">
-                        <img src="img/about-05.jpg" alt="Image" class="img-fluid mr-4">
-                        <div class="media-body">
-                            <h2 class="tm-color-primary tm-post-title mb-2">Catherine Soft</h2>
-                            <h3 class="tm-h3 mb-3">Team Leader</h3>
-                            <p class="mb-0 tm-line-height-short">
-                                Integer eu sapien hendrerit,
-                                imperdiet arcu sit amet, sollicitudin ipsum.
-                                Phasellus consequat suscipit ligula eget bibendum.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>        
-            <footer class="row tm-row">
-                <div class="col-md-6 col-12 tm-color-gray">
-                    Design: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">TemplateMo</a>
-                </div>
-                <div class="col-md-6 col-12 tm-color-gray tm-copyright">
-                    Copyright 2020 Xtra Blog Company Co. Ltd.
-                </div>
-            </footer>
-        </main>
-    </div>
-{% endblock %}
+            </div> 
+{% endblock %}       
+
