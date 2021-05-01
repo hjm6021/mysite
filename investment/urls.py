@@ -3,5 +3,8 @@ from investment import views
 
 app_name = "investment"
 urlpatterns = [
-    path('', views.HomeView.as_view(), name="home"),
+    # investment/
+    path('', views.index, name="index"),
+    # investment/1
+    path('<int:category_id>/', views.list, name="list"),
 ]

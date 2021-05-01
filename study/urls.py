@@ -3,5 +3,9 @@ from study import views
 
 app_name = "study"
 urlpatterns = [
-    path('', views.HomeView.as_view(), name="home"),
+    # study/
+    path('', views.index, name="index"),
+
+    # study/1
+    path('<int:category_id>/', views.list, name="list")
 ]

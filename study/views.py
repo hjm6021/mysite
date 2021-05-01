@@ -1,8 +1,17 @@
-from django.views.generic.base import TemplateView
+from django.shortcuts import render
+from study.models import Post, Category
 
 # Create your views here.
-class HomeView(TemplateView):
+def index(request):
     template_name = "study/index.html"
+    latest_category_list = Category.objects.all().order_by("-create_dt")
+    #latest_post_list = Post.objects.all().order_by("-modify_dt")
+    context = {"latest_category_list":latest_category_list}
+    return render(request, template_name, context)
 
-class AboutView(TemplateView):
-    template_name = "about.html"
+def list(request, category_id):
+    template_name = "study/index.html"
+    latest_category_list = Category.objects.all().order_by("-create_dt")
+    #latest_post_list = Post.objects.all().order_by("-modify_dt")
+    context = {"latest_category_list":latest_category_list}
+    return render(request, template_name, context)
