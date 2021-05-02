@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>{{ request.resolver_match.app_name | title }}</title>
+{% endblock %}
+
+{% block header %}
+<header class="tm-header" id="tm-header">
+    <div class="tm-header-wrapper">
+        <div class="tm-site-header"><a href="{% url 'home' %}">
+            <h1 class="text-center">{{ request.resolver_match.app_name | title }}</h1>
+        </a></div>
+        <nav class="tm-nav" id="tm-nav">            
+            <ul>
+                {% if request.resolver_match.app_name == 'study' %}
+                    <li class="tm-nav-item"><a href="{% url 'study:index' %}" class="tm-nav-link">
+                        <i class="fas fa-pen"></i>
+                        Overall
+                    </a></li>
+                    {% for category in latest_category_list%}
+                    <li class="tm-nav-item"><a href="{% url 'study:list' category.slug %}" class="tm-nav-link">
+                        <i class="fas fa-pen"></i>
+                        {{ category.name }}
+                    </a></li>
+                    {% endfor %}
+                {% elif request.resolver_match.app_name == 'investment' %}
+                    <li class="tm-nav-item"><a href="{% url 'investment:index' %}" class="tm-nav-link">
+                        <i class="fas fa-pen"></i>
+                        Overall
+                    </a></li>
+                    {% for category in latest_category_list%}
+                    <li class="tm-nav-item"><a href="{% url 'investment:list' category.slug %}" class="tm-nav-link">
+                        <i class="fas fa-pen"></i>
+                        {{ category.name }}
+                    </a></li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header> 
+{% endblock %}

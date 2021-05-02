@@ -359,8 +359,6 @@ video {
 figure { margin: 0; }
 figcaption { line-height: 1.4; }
 
-.tm-post-full { max-width: 600px; }
-
 .tm-post-sidebar {
     max-width: 280px;
     margin-left: auto;

@@ -4,7 +4,6 @@ from django.urls import reverse
 # Create your models here.
 class Post(models.Model):
     title = models.CharField(verbose_name='TITLE', max_length=50)
-    slug = models.CharField("SLUG", unique=True, max_length=50)
     category_id = models.ForeignKey("Category", on_delete=models.CASCADE)
     description = models.CharField("DESCRIPTION", max_length=100, blank=True)
     content = models.TextField("CONTENT")
@@ -21,22 +20,17 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("blog:post_detail", args=(self.slug,))
+        return reverse("study:detail", args=(self.category_id.name, self.pk))
     
-    def get_previous(self):
-        return self.get_previous_by_modify_dt()
+    def is_length_of_content_more_than_200(self):
+        return len(self.content) > 200
 
-    def get_next(self):
-        return self.get_next_by_modify_dt()
-
-    def is_length_of_content_more_than_300(self):
-        return len(self.content) > 300
-
-    def get_content_less_than_300(self):
-        return self.content[:300]
+    def get_content_less_than_200(self):
+        return self.content[:200]
 
 class Category(models.Model):
     name = models.CharField(verbose_name="NAME", max_length=50)
+    slug = models.CharField("SLUG", unique=True, max_length=50)
     create_dt = models.DateTimeField("CREATE DATE", auto_now_add=True)
 
     def __str__(self):

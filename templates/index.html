@@ -1,31 +1,58 @@
-{% extends "base_header.html" %}
+{% extends "base_header_app.html" %}
 {% load static %}
 
-{% block title%}	
-<title>HAN's Blog</title>
-{% endblock %}
-
 {% block content %}
-<div class="container-fluid">
-    <main class="tm-main">
-        <div class="row tm-row">
-            <div class="col-lg-8 tm-post-col">
-                <div class="tm-post-full">                    
-                    <div class="mb-4">
-                        <h2 class="pt-2 tm-color-primary tm-post-title">Welcome to My Blog</h2>
-                        <p class="tm-mb-40">Created in May, 2021</p>
-                        <p>
-                            Hello. This is Jeongmin Han who is working for BASIS Corporation as IT Engineer in Tokyo, Japan</p>
-                        <p>
-                            I've made this blog to get used to Django framework. <br>
-                            Everything I study about IT and Investment will be posted on this blog. <br>
-                            Feel free to contact me if you have any question or feedback. <br>
-                            (Email Address was wrote on "About me" page) <br>
+    <div class="container-fluid">
+        <main class="tm-main"> 
+            <div class="row tm-row">
 
-                            Please enjoy my blog! Thanks!
-                        </p>
-                    </div>    
-               </div>
+                <!-- Article -->
+                {% for post in posts%}
+                <article class="col-12 col-md-6 tm-post">
+                    <hr class="tm-hr-primary">
+                    <a href="{% url 'study:detail' post.category_id.slug post.id %}" class="effect-lily tm-post-link tm-pt-60">
+                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{ post.title }}</h2>
+                    </a>
+                    <p class="tm-pt-30">
+                        {% if post.is_length_of_content_more_than_200 %}
+                            {{ post.get_content_less_than_200 }}
+                        {% else %}
+                            {{ post.content }}
+                        {% endif %}
+                    </p>
+                    <div class="d-flex justify-content-between tm-pt-45">
+                        <span class="tm-color-primary">{{ post.category_id.name }}</span>
+                        <span class="tm-color-primary">{{ post.create_dt | date:'jS M, Y'}}</span>
+                    </div>
+                    <hr>
+                </article>
+                {% endfor %}
+                
             </div>
-        </div>
+            <div class="row tm-row tm-mt-100 tm-mb-75">
+                <div class="tm-prev-next-wrapper">
+                    {% if posts.has_previous%}
+                        <a href="?page={{ posts.previous_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Prev</a>
+                    {% else %}
+                        <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
+                    {% endif %}  
+                    {% if posts.has_next%}
+                    <a href="?page={{ posts.next_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
+                    {% else %}
+                        <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Next</a>
+                    {% endif %}                  
+                </div>
+                <div class="tm-paging-wrapper">
+                    <span class="d-inline-block mr-3">Page</span>
+                    <nav class="tm-paging-nav d-inline-block">
+                        <ul>
+                            {% for index in posts.paginator.page_range %}
+                            <li class="tm-paging-item">
+                                <a href="?page={{ index }}" class="mb-2 tm-btn tm-paging-link">{{ index }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+                </div>                
+            </div>            
 {% endblock %}

@@ -5,6 +5,10 @@ app_name = "investment"
 urlpatterns = [
     # investment/
     path('', views.index, name="index"),
-    # investment/1
-    path('<int:category_id>/', views.list, name="list"),
+
+    # investment/python
+    path("<slug:category_slug>/", views.list, name="list"),
+
+    # investment/python/1
+    path("<slug:category_slug>/<int:post_id>/", views.detail, name='detail')
 ]

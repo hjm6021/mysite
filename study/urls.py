@@ -6,6 +6,9 @@ urlpatterns = [
     # study/
     path('', views.index, name="index"),
 
-    # study/1
-    path('<int:category_id>/', views.list, name="list")
+    # study/python
+    path("<slug:category_slug>/", views.list, name="list"),
+
+    # study/python/1
+    path("<slug:category_slug>/<int:post_id>/", views.detail, name='detail')
 ]
