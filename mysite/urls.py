@@ -27,4 +27,9 @@ urlpatterns = [
     path('study/', include('study.urls')),
     path('investment/', include('investment.urls')),
     path('about/', views.AboutView.as_view(), name="about"),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+]
+
+if settings.LOCAL:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+else:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
