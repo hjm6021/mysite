@@ -24,10 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_t#-)p=9d6*s-n#0ov!_$^lc7)tnx&f_t#=pd3jr855y)(j*y4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
-ALLOWED_HOSTS = ["52.194.188.73"]
+LOCAL = True
 
+if LOCAL:
+    DEBUG = True
+    ALLOWED_HOSTS = []
+else:
+    DEBUG = False
+    ALLOWED_HOSTS = ["52.194.188.73"]
 
 # Application definition
 
@@ -76,19 +81,29 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mysite',
-        'USER': 'hjm6021',
-        'PASSWORD': 'hanjm6021',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'
+if LOCAL:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME':  BASE_DIR / 'db.sqlite3'
         }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'mysite',
+            'USER': 'hjm6021',
+            'PASSWORD': 'hanjm6021',
+            'HOST': 'localhost',
+            'PORT': '3306',
+            'OPTIONS': {
+                'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'
+            }
+        }
+    }
+
+
 
 
 # Password validation
