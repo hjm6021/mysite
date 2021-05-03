@@ -1,6 +1,6 @@
 from django import forms
 from .models import Post, Category
-from ckeditor_uploader.widgets import CKEditorWidget, CKEditorUploadingWidget
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class PostForm(forms.Form):
     title = forms.CharField(widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}))
