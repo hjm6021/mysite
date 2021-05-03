@@ -29,7 +29,7 @@ LOCAL = True
 
 if LOCAL:
     DEBUG = True
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 else:
     DEBUG = False
     ALLOWED_HOSTS = ["52.194.188.73"]
@@ -88,6 +88,7 @@ if LOCAL:
             'NAME':  BASE_DIR / 'db.sqlite3'
         }
     }
+    
 else:
     DATABASES = {
         'default': {
@@ -137,7 +138,10 @@ TIME_ZONE = 'Asia/Tokyo'
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/') 
+if LOCAL:
+    STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static/') 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
