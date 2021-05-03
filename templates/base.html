@@ -18,8 +18,15 @@ https://templatemo.com/tm-553-xtra-blog
 -->
 </head>
 <body>
+
     {% block header %}{% endblock %}
    
+    {% if user.is_authenticated %}
+        <a class="btn btn-primary" href="{% url 'accounts:signout' %}" role="button" style="float:right;">Sign Out</a>
+    {% else %}
+        <a class="btn btn-primary" href="{% url 'accounts:signin' %}" role="button" style="float:right;">Sign In</a>
+    {% endif %}
+
     {% block content %}{% endblock %}
         <footer class="row tm-row">
             <div class="col-md-6 col-12 tm-color-gray">

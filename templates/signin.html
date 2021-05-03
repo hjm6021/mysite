@@ -1,0 +1,13 @@
+<h1>Login</h1>
+<p>{{ error }}</p>
+
+<form method="POST" action="{% url 'accounts:signin'%}">
+	{%csrf_token%}
+    Username:
+    <input name="username" type="text" value="">
+    Password:
+    <input name="password" type="password" value="">
+    <input type="submit" value="Login">
+</form>
+
+<a href="{% url 'home' %}">Blog Home</a>
