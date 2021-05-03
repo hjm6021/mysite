@@ -21,9 +21,9 @@
                     {% endif %}
                     <p class="tm-pt-30">
                         {% if post.is_length_of_content_more_than_200 %}
-                            {{ post.get_content_less_than_200 }}
+                            {{ post.get_content_less_than_200 | safe }}
                         {% else %}
-                            {{ post.content }}
+                            {{ post.content | safe}}
                         {% endif %}
                     </p>
                     <div class="d-flex justify-content-between tm-pt-45">

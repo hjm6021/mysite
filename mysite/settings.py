@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'study',
     'investment',
     'accounts',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -140,7 +142,8 @@ TIME_ZONE = 'Asia/Tokyo'
 STATIC_URL = '/static/'
 
 if LOCAL:
-    STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
+    #STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static/') 
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static/') 
 
@@ -152,3 +155,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Disqus
 DISQUS_SHORTNAME = "mysite-rzjwilotv5"
 DISQUS_MY_DOMAIN = "http://localhost:8000"
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
