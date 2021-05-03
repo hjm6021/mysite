@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from study.models import Post, Category
 from django.core.paginator import Paginator
 from django.conf import settings
+from .forms import PostForm
 
 # Create your views here.
 def index(request):
@@ -63,5 +64,26 @@ def detail(request, category_slug, post_id):
     context['disqus_id'] = f"post-{category.name}-{post.id}"
     context['disqus_url'] = f"{settings.DISQUS_MY_DOMAIN}{post.get_absolute_url()}"
     context['disqus_title'] = f"{post.title}"
+
+    return render(request, template_name, context)
+
+def add(request):
+
+    template_name = "add.html"
+
+    # DB로부터 데이터 획득
+    latest_category_list = Category.objects.all().order_by("-create_dt")
+
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            category = Category.objects.get(pk=form.data['category'])
+            obj = Post(title=form.data['title'], category_id=category, description=form.data['description'], content=form.data['content'])
+            obj.save()
+            return redirect("study:index")
+    else:
+        form = PostForm()
+
+    context = {"latest_category_list":latest_category_list, "form":form}
 
     return render(request, template_name, context)
