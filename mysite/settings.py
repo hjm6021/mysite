@@ -155,7 +155,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Disqus
 DISQUS_SHORTNAME = "mysite-rzjwilotv5"
-DISQUS_MY_DOMAIN = "http://localhost:8000"
+DISQUS_MY_DOMAIN = "52.194.188.73"
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
