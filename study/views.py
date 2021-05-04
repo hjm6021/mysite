@@ -72,7 +72,7 @@ def detail(request, category_slug, post_id):
 
     # Disqus 세팅
     context['disqus_short'] = f"{settings.DISQUS_SHORTNAME}"
-    context['disqus_id'] = f"post-{category.name}-{post.id}"
+    context['disqus_id'] = f"post-{category.slug}-{post.id}"
     context['disqus_url'] = f"{settings.DISQUS_MY_DOMAIN}{post.get_absolute_url()}"
     context['disqus_title'] = f"{post.title}"
 
