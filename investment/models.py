@@ -22,7 +22,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("study:detail", args=(self.category_id.name, self.pk))
+        return reverse("study:detail", args=(self.category_id.slug, self.pk))
     
     def is_length_of_content_more_than_200(self):
         return len(self.content) > 200
