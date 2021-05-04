@@ -158,6 +158,16 @@ DISQUS_SHORTNAME = "mysite-rzjwilotv5"
 DISQUS_MY_DOMAIN = "http://localhost:8000"
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'extraPlugins': ','.join(
+            [
+                'codesnippet',
+            ]),
+    },
+}
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'

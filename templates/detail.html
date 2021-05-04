@@ -15,8 +15,12 @@
                         <h2 class="pt-2 tm-color-primary tm-post-title">{{ post.title }}</h2>
                         <p class="tm-mb-40">Posted at {{ post.create_dt | date:'A g:i, jS M, Y'}}</p>
                         <p>
-                            {{ post.content | safe}}
+                            {{ post.content | safe }}
                         </p>
+                        {% if user.is_authenticated %}
+                            <button type="button" class="btn btn-outline-primary"><a href="">EDIT</a></button>
+                            <button type="button" class="btn btn-outline-primary"><a href="">DELETE</a></button>
+                        {% endif %}
                         <span class="d-block text-right tm-color-primary">{{ post.category_id.name }}</span>
                     </div>
                 </div>
