@@ -14,4 +14,10 @@ urlpatterns = [
 
     # study/python/1
     path("<slug:category_slug>/<int:post_id>/", views.detail, name='detail'),
+
+    # study/1/edit
+    path("<int:post_id>/edit/", views.edit, name='edit'),
+
+    # study/1/delete
+    path("<int:post_id>/delete/", views.delete, name='delete'),
 ]

@@ -1,4 +1,4 @@
-{% extends "base_header_app.html" %}
+{% extends "investment/investment_base.html" %}
 {% load static %}
 
 {% block content %}
@@ -10,15 +10,9 @@
                 {% for post in posts%}
                 <article class="col-12 col-md-6 tm-post">
                     <hr class="tm-hr-primary">
-                    {% if request.resolver_match.app_name == 'study' %}
-                        <a href="{% url 'study:detail' post.category_id.slug post.id %}" class="effect-lily tm-post-link tm-pt-60">
-                            <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{ post.title }}</h2>
-                        </a>
-                    {% elif request.resolver_match.app_name == 'investment' %}
-                        <a href="{% url 'investment:detail' post.category_id.slug post.id %}" class="effect-lily tm-post-link tm-pt-60">
-                            <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{ post.title }}</h2>
-                        </a>
-                    {% endif %}
+                    <a href="{% url 'investment:detail' post.category_id.slug post.id %}" class="effect-lily tm-post-link tm-pt-60">
+                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{ post.title }}</h2>
+                    </a>
                     <p class="tm-pt-30">
                         {{ post.description }}
                     </p>

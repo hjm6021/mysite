@@ -1,4 +1,4 @@
-{% extends "base_header_app.html" %}
+{% extends "study/study_base.html" %}
 {% load static %}
 
 {% block content %}
@@ -18,8 +18,8 @@
                             {{ post.content | safe }}
                         </p>
                         {% if user.is_authenticated %}
-                            <button type="button" class="btn btn-outline-primary"><a href="">EDIT</a></button>
-                            <button type="button" class="btn btn-outline-primary"><a href="">DELETE</a></button>
+                            <button type="button" class="btn btn-outline-primary"><a href="{% url 'study:edit' post.id %}">EDIT</a></button>
+                            <button type="button" class="btn btn-outline-primary"><a href="{% url 'study:delete' post.id %}">DELETE</a></button>
                         {% endif %}
                         <span class="d-block text-right tm-color-primary">{{ post.category_id.name }}</span>
                     </div>
@@ -47,4 +47,3 @@
         </script>
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>    
 {% endblock %}
-

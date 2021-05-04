@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from study.models import Post, Category
 from django.core.paginator import Paginator
 from django.conf import settings
@@ -10,7 +10,7 @@ def index(request):
     page = request.GET.get('page')
     
     # 템플릿 지정
-    template_name = "index.html"
+    template_name = "study/study_index.html"
     
     # DB로부터 데이터 획득
     latest_category_list = Category.objects.all().order_by("-create_dt")
@@ -32,7 +32,7 @@ def list(request, category_slug):
     page = request.GET.get('page')
     
     # 템플릿 지정
-    template_name = "index.html"
+    template_name = "study/study_index.html"
 
     # DB로부터 데이터 획득
     latest_category_list = Category.objects.all().order_by("-create_dt")
@@ -51,7 +51,7 @@ def list(request, category_slug):
 
 def detail(request, category_slug, post_id):
     # 템플릿 지정
-    template_name = "detail.html"
+    template_name = "study/study_detail.html"
 
     # DB로부터 데이터 획득
     latest_category_list = Category.objects.all().order_by("-create_dt")
@@ -68,8 +68,8 @@ def detail(request, category_slug, post_id):
     return render(request, template_name, context)
 
 def add(request):
-
-    template_name = "add.html"
+    # 템플릿 지정
+    template_name = "study/study_add.html"
 
     # DB로부터 데이터 획득
     latest_category_list = Category.objects.all().order_by("-create_dt")
@@ -87,3 +87,36 @@ def add(request):
     context = {"latest_category_list":latest_category_list, "form":form}
 
     return render(request, template_name, context)
+
+def edit(request, post_id):
+    # 수정할 포스트 획득
+    post = get_object_or_404(Post, pk=post_id)
+
+    # 템플릿 지정
+    template_name = "study/study_edit.html"
+    
+    # DB로부터 데이터 획득
+    latest_category_list = Category.objects.all().order_by("-create_dt")
+
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            category = Category.objects.get(pk=form.data['category'])
+            post.title = form.data['title']
+            post.category_id = category
+            post.description = form.data['description']
+            post.content = form.data['content']
+            post.save()
+            return redirect("study:index")
+    else:
+        initial = {'title':post.title, 'category':post.category_id, 'description':post.description, 'content':post.content}
+        form = PostForm(initial=initial)
+
+    context = {"latest_category_list":latest_category_list, "form":form}
+    return render(request, template_name, context)
+
+
+def delete(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    post.delete()
+    return redirect("study:index")

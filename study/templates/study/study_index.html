@@ -1,0 +1,54 @@
+{% extends "study/study_base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        <main class="tm-main"> 
+            <div class="row tm-row">
+
+                <!-- Article -->
+                {% for post in posts%}
+                <article class="col-12 col-md-6 tm-post">
+                    <hr class="tm-hr-primary">
+                    <a href="{% url 'study:detail' post.category_id.slug post.id %}" class="effect-lily tm-post-link tm-pt-60">
+                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{ post.title }}</h2>
+                    </a>
+                    <p class="tm-pt-30">
+                        {{ post.description }}
+                    </p>
+                    <div class="d-flex justify-content-between tm-pt-45">
+                        <span class="tm-color-primary">{{ post.category_id.name }}</span>
+                        <span class="tm-color-primary">{{ post.create_dt | date:'jS M, Y'}}</span>
+                    </div>
+                    <hr>
+                </article>
+                {% endfor %}
+                
+            </div>
+            <div class="row tm-row tm-mt-100 tm-mb-75">
+                <div class="tm-prev-next-wrapper">
+                    {% if posts.has_previous%}
+                        <a href="?page={{ posts.previous_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Prev</a>
+                    {% else %}
+                        <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
+                    {% endif %}  
+                    {% if posts.has_next%}
+                    <a href="?page={{ posts.next_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
+                    {% else %}
+                        <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Next</a>
+                    {% endif %}                  
+                </div>
+                <div class="tm-paging-wrapper">
+                    <span class="d-inline-block mr-3">Page</span>
+                    <nav class="tm-paging-nav d-inline-block">
+                        <ul>
+                            {% for index in posts.paginator.page_range %}
+                            <li class="tm-paging-item">
+                                <a href="?page={{ index }}" class="mb-2 tm-btn tm-paging-link">{{ index }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+                </div>                
+            </div>            
+{% endblock %}

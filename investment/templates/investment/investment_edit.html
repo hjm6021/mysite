@@ -1,0 +1,20 @@
+{% extends 'investment/investment_base.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <main class="tm-main"> 
+            <div class="row tm-row">
+                <h1>EDIT post</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    <ul>
+                        <li>Title: {{ form.title }}</li> 
+                        <li>Category: {{ form.category }}</li> 
+                        <li>Description: <br>{{ form.description }}</li> 
+                        {{ form.media }}
+                        <li>Content: <br>{{ form.content }}</li>
+                    </ul> 
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+{% endblock %}

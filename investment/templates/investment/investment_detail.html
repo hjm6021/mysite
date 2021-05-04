@@ -1,0 +1,51 @@
+{% extends "investment/investment_base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        <main class="tm-main">      
+            <div class="row tm-row">
+                <div class="col-12">
+                    <hr class="tm-hr-primary tm-mb-55">
+                </div>
+            </div>
+            <div class="row tm-row">
+                <div>                    
+                    <div class="mb-4">
+                        <h2 class="pt-2 tm-color-primary tm-post-title">{{ post.title }}</h2>
+                        <p class="tm-mb-40">Posted at {{ post.create_dt | date:'A g:i, jS M, Y'}}</p>
+                        <p>
+                            {{ post.content | safe }}
+                        </p>
+                        {% if user.is_authenticated %}
+                            <button type="button" class="btn btn-outline-primary"><a href="{% url 'investment:edit' post.id%}">EDIT</a></button>
+                            <button type="button" class="btn btn-outline-primary"><a href="{% url 'investment:delete' post.id%}">DELETE</a></button>
+                        {% endif %}
+                        <span class="d-block text-right tm-color-primary">{{ post.category_id.name }}</span>
+                    </div>
+                </div>
+            </div>
+
+        <div id="disqus_thread" style="width: 70%;"></div>
+        <script>
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+            
+            var disqus_config = function () {
+            this.page.url = "{{ disqus_url }}";  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = "{{ disqus_id }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            this.page.title = "{{ disqus_title }}"
+            };
+            
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://mysite-rzjwilotv5.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>    
+{% endblock %}
+
+

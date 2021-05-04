@@ -1,10 +1,10 @@
-{% extends 'base_header_app.html' %}
+{% extends 'study/study_base.html' %}
 
 {% block content %}
     <div class="container-fluid">
         <main class="tm-main"> 
             <div class="row tm-row">
-                <h1>Create NEW post</h1>
+                <h1>NEW post</h1>
                 <form method="POST">
                     {% csrf_token %}
                     <ul>

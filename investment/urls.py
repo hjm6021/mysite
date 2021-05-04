@@ -13,5 +13,11 @@ urlpatterns = [
     path("<slug:category_slug>/", views.list, name="list"),
 
     # investment/python/1
-    path("<slug:category_slug>/<int:post_id>/", views.detail, name='detail')
+    path("<slug:category_slug>/<int:post_id>/", views.detail, name='detail'),
+
+    # investment/1/edit
+    path("<int:post_id>/edit/", views.edit, name='edit'),
+
+    # investment/1/delete
+    path("<int:post_id>/delete/", views.delete, name='delete'),
 ]
