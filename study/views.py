@@ -4,6 +4,16 @@ from django.core.paginator import Paginator
 from django.conf import settings
 from .forms import PostForm
 
+def get_number_of_rows():
+    number_of_rows = {}
+    latest_category_list = Category.objects.all().order_by("-create_dt")
+    for category in latest_category_list:
+        post_list = Post.objects.all().filter(category_id=category.pk)
+        count = post_list.count()
+        number_of_rows[category.name] = count
+
+    return number_of_rows
+
 # Create your views here.
 def index(request):
     # Get으로 페이지 번호 획득
@@ -22,7 +32,7 @@ def index(request):
     # Get으로 획득한 페이지번호로 해당하는 수의 포스트를 획득
     posts = paginator.get_page(page)
     
-    context = {"latest_category_list":latest_category_list, "posts":posts}
+    context = {"latest_category_list":latest_category_list, "posts":posts, "number":get_number_of_rows()}
 
     return render(request, template_name, context)
 
@@ -37,7 +47,7 @@ def list(request, category_slug):
     # DB로부터 데이터 획득
     latest_category_list = Category.objects.all().order_by("-create_dt")
     category = Category.objects.get(slug=category_slug)
-    latest_post_list = Post.objects.all().filter(category_id=category.pk).order_by("-modify_dt")
+    latest_post_list = Post.objects.all().filter(category_id=category.pk).order_by("-create_dt")
 
     # 페이지 기능 사용하기
     paginator = Paginator(latest_post_list, 4)
@@ -45,7 +55,7 @@ def list(request, category_slug):
     # Get으로 획득한 페이지번호로 해당하는 수의 포스트를 획득
     posts = paginator.get_page(page)
 
-    context = {"latest_category_list":latest_category_list, "posts":posts}
+    context = {"latest_category_list":latest_category_list, "posts":posts, "number":get_number_of_rows()}
 
     return render(request, template_name, context)
 
@@ -57,7 +67,8 @@ def detail(request, category_slug, post_id):
     latest_category_list = Category.objects.all().order_by("-create_dt")
     category = Category.objects.get(slug=category_slug)
     post = Post.objects.get(id=post_id)
-    context = {"latest_category_list":latest_category_list, "post":post}
+
+    context = {"latest_category_list":latest_category_list, "post":post, "number":get_number_of_rows()}
 
     # Disqus 세팅
     context['disqus_short'] = f"{settings.DISQUS_SHORTNAME}"
@@ -84,7 +95,7 @@ def add(request):
     else:
         form = PostForm()
 
-    context = {"latest_category_list":latest_category_list, "form":form}
+    context = {"latest_category_list":latest_category_list, "form":form, "number":get_number_of_rows()}
 
     return render(request, template_name, context)
 
@@ -112,7 +123,7 @@ def edit(request, post_id):
         initial = {'title':post.title, 'category':post.category_id, 'description':post.description, 'content':post.content}
         form = PostForm(initial=initial)
 
-    context = {"latest_category_list":latest_category_list, "form":form}
+    context = {"latest_category_list":latest_category_list, "form":form, "number":get_number_of_rows()}
     return render(request, template_name, context)
 
 

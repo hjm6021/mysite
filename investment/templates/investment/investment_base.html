@@ -22,7 +22,11 @@
                 {% for category in latest_category_list%}
                 <li class="tm-nav-item"><a href="{% url 'investment:list' category.slug %}" class="tm-nav-link">
                     <i class="fas fa-pen"></i>
-                    {{ category.name }}
+                    {% for key, value in number.items %}
+                        {% if category.name == key %}
+                            {{ category.name }}({{ value }})
+                        {% endif %}
+                    {% endfor %}
                 </a></li>
                 {% endfor %}
             </ul>

@@ -13,7 +13,7 @@
                 <div>                    
                     <div class="mb-4">
                         <h2 class="pt-2 tm-color-primary tm-post-title">{{ post.title }}</h2>
-                        <p class="tm-mb-40">Posted at {{ post.create_dt | date:'A g:i, jS M, Y'}}</p>
+                        <p class="tm-mb-40">Posted at {{ post.create_dt | date:'A g:i, jS M, Y'}} <br> Last edited at {{ post.modify_dt | date:'A g:i, jS M, Y'}}</p>
                         <p>
                             {{ post.content | safe }}
                         </p>
