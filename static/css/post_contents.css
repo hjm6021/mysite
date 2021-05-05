@@ -19,6 +19,8 @@ article
 	line-height: 150%;
 }
 
+article p, article span { color: black;}
+
 .cke_editable
 {
 	font-size: 13px;
