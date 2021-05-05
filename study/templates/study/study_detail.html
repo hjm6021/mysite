@@ -14,9 +14,8 @@
                     <div class="mb-4">
                         <h2 class="pt-2 tm-color-primary tm-post-title">{{ post.title }}</h2>
                         <p class="tm-mb-40">Posted at {{ post.create_dt | date:'A g:i, jS M, Y'}} <br> Last edited at {{ post.modify_dt | date:'A g:i, jS M, Y'}}</p>
-                        <p>
-                            {{ post.content | safe }}
-                        </p>
+                        <article>{{ post.content | safe }}</article>
+                        <br>
                         {% if user.is_authenticated %}
                             <button type="button" class="btn btn-outline-primary"><a href="{% url 'study:edit' post.id %}">EDIT</a></button>
                             <button type="button" class="btn btn-outline-primary"><a href="{% url 'study:delete' post.id %}">DELETE</a></button>
