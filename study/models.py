@@ -32,7 +32,7 @@ class Post(models.Model):
 
 class Category(models.Model):
     name = models.CharField(verbose_name="NAME", max_length=50)
-    slug = models.CharField("SLUG", unique=True, max_length=50)
+    slug = models.SlugField("SLUG", unique=True, allow_unicode=True)
     create_dt = models.DateTimeField("CREATE DATE", auto_now_add=True)
 
     def __str__(self):

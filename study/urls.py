@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from study import views
 
 app_name = "study"
@@ -10,10 +10,12 @@ urlpatterns = [
     path("add/", views.add, name='add'),
 
     # study/python
-    path("<slug:category_slug>/", views.list, name="list"),
+    # path("<slug:category_slug>/", views.list, name="list"),
+    re_path(r'^(?P<category_slug>[-\w]+)/$', views.list, name="list"), 
 
     # study/python/1
-    path("<slug:category_slug>/<int:post_id>/", views.detail, name='detail'),
+    # path("<slug:category_slug>/<int:post_id>/", views.detail, name='detail'),
+    re_path(r'^(?P<category_slug>[-\w]+)/(?P<post_id>\d+)/$', views.detail, name="detail"),
 
     # study/1/edit
     path("<int:post_id>/edit/", views.edit, name='edit'),
