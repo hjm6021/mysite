@@ -6,8 +6,16 @@
         <main class="tm-main">      
             <div class="row tm-row">
                 <div class="col-12">
-                    <hr class="tm-hr-primary tm-mb-55">
+                    <hr class="tm-hr-primary">
                 </div>
+            </div>
+            <div class="row tm-row">
+                {% if post.get_previous_by_create_dt %}
+                    <a href="{% url 'investment:detail' post.get_previous_by_create_dt.category_id.slug post.get_previous_by_create_dt.id %}" style="float: left;">&lt;&lt; {{ post.get_previous_by_create_dt.title }}</a>
+                {% endif %}
+                {% if post.get_next_by_create_dt %}
+                    <a href="{% url 'investment:detail' post.get_next_by_create_dt.category_id.slug post.get_next_by_create_dt.id %}" style="float: left;">{{ post.get_next_by_create_dt.title }} &gt;&gt;</a>
+                {% endif %}
             </div>
             <div class="row tm-row">
                 <div>                    
