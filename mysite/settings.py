@@ -34,7 +34,7 @@ if LOCAL:
     ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 else:
     DEBUG = False
-    ALLOWED_HOSTS = ["52.194.188.73"]
+    ALLOWED_HOSTS = ["52.194.188.73","www.jmhan-blog.com","jmhan-blog.com"]
 
 # Application definition
 
