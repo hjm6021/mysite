@@ -3,12 +3,7 @@
 
 {% block content %}
     <div class="container-fluid">
-        <main class="tm-main">      
-            <div class="row tm-row">
-                <div class="col-12">
-                    <hr class="tm-hr-primary">
-                </div>
-            </div>
+        <main class="tm-main">
             <div class="row tm-row">
                 {% if post.get_previous_by_create_dt %}
                     <a href="{% url 'study:detail' post.get_previous_by_create_dt.category_id.slug post.get_previous_by_create_dt.id %}" style="float: left;">&lt;&lt;Prev: {{ post.get_previous_by_create_dt.title }}</a>
@@ -16,6 +11,11 @@
                 {% if post.get_next_by_create_dt %}
                     <a href="{% url 'study:detail' post.get_next_by_create_dt.category_id.slug post.get_next_by_create_dt.id %}" style="float: left;">{{ post.get_next_by_create_dt.title }} :Next&gt;&gt;</a>
                 {% endif %}
+            </div>      
+            <div class="row tm-row">
+                <div class="col-12">
+                    <hr class="tm-hr-primary">
+                </div>
             </div>
             <div class="row tm-row">
                 <div>                    
