@@ -24,12 +24,6 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("study:detail", args=(self.category_id.slug, self.pk))
     
-    def is_length_of_content_more_than_200(self):
-        return len(self.content) > 200
-
-    def get_content_less_than_200(self):
-        return self.content[:200]
-
 class Category(models.Model):
     name = models.CharField(verbose_name="NAME", max_length=50)
     slug = models.SlugField("SLUG", unique=True, allow_unicode=True)

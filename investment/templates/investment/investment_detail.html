@@ -6,10 +6,16 @@
         <main class="tm-main">
             <div class="row tm-row">
                 {% if post.get_previous_by_create_dt %}
-                    <a href="{% url 'investment:detail' post.get_previous_by_create_dt.category_id.slug post.get_previous_by_create_dt.id %}" style="float: left;">&lt;&lt; {{ post.get_previous_by_create_dt.title }}</a>
+                    <a href="{% url 'investment:detail' post.get_previous_by_create_dt.category_id.slug post.get_previous_by_create_dt.id %}">
+                        <strong>&lt;&lt; Prev |</strong> [{{ post.get_previous_by_create_dt.category_id.name }}] {{ post.get_previous_by_create_dt.title }}</a>
+                {% else %}
+                    <a href=""><strong>&lt;&lt; Prev |</strong></a>
                 {% endif %}
                 {% if post.get_next_by_create_dt %}
-                    <a href="{% url 'investment:detail' post.get_next_by_create_dt.category_id.slug post.get_next_by_create_dt.id %}" style="float: left;">{{ post.get_next_by_create_dt.title }} &gt;&gt;</a>
+                    <a href="{% url 'investment:detail' post.get_next_by_create_dt.category_id.slug post.get_next_by_create_dt.id %}">
+                        [{{ post.get_next_by_create_dt.category_id.name }}] {{ post.get_next_by_create_dt.title }} <strong>| Next &gt;&gt;</strong></a>
+                {% else %}
+                    <a href=""><strong>| Next &gt;&gt;</strong></a>
                 {% endif %}
             </div>      
             <div class="row tm-row">
@@ -17,20 +23,18 @@
                     <hr class="tm-hr-primary">
                 </div>
             </div>
-            <div class="row tm-row">
-                <div>                    
-                    <div class="mb-4">
-                        <h2 class="pt-2 tm-color-primary tm-post-title">{{ post.title }}</h2>
-                        <p class="tm-mb-40">Posted at {{ post.create_dt | date:'A g:i, jS M, Y'}} <br> Last edited at {{ post.modify_dt | date:'A g:i, jS M, Y'}}</p>
-                        <p>
-                            {{ post.content | safe }}
-                        </p>
-                        {% if user.is_authenticated %}
-                            <button type="button" class="btn btn-outline-primary"><a href="{% url 'investment:edit' post.id%}">EDIT</a></button>
-                            <button type="button" class="btn btn-outline-primary"><a href="{% url 'investment:delete' post.id%}">DELETE</a></button>
-                        {% endif %}
-                        <span class="d-block text-right tm-color-primary">{{ post.category_id.name }}</span>
-                    </div>
+            <div class="row tm-row">              
+                <div class="mb-4">
+                    <h2 class="pt-2 tm-color-primary tm-post-title">{{ post.title }}</h2>
+                    <p class="tm-mb-40">Posted at {{ post.create_dt | date:'A g:i, jS M, Y'}} <br> Last edited at {{ post.modify_dt | date:'A g:i, jS M, Y'}}</p>
+                    <p>
+                        {{ post.content | safe }}
+                    </p>
+                    {% if user.is_authenticated %}
+                        <button type="button" class="btn btn-outline-primary"><a href="{% url 'investment:edit' post.id%}">EDIT</a></button>
+                        <button type="button" class="btn btn-outline-primary"><a href="{% url 'investment:delete' post.id%}">DELETE</a></button>
+                    {% endif %}
+                    <span class="d-block text-right tm-color-primary">{{ post.category_id.name }}</span>
                 </div>
             </div>
 
