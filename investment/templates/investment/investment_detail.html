@@ -1,5 +1,6 @@
 {% extends "investment/investment_base.html" %}
 {% load static %}
+{% load hitcount_tags %}
 
 {% block content %}
     <div class="container-fluid">
@@ -26,7 +27,7 @@
             <div class="row tm-row">              
                 <div class="mb-4">
                     <h2 class="pt-2 tm-color-primary tm-post-title"><strong>[{{ post.category_id.name }}]</strong> {{ post.title }}</h2>
-                    <p class="tm-mb-40">Posted at {{ post.create_dt | date:'A g:i, jS M, Y'}} <br> Last edited at {{ post.modify_dt | date:'A g:i, jS M, Y'}}</p>
+                    <p class="tm-mb-40">{% get_hit_count for post %} views <br> Last edited at {{ post.modify_dt | date:'A g:i, jS M, Y'}} | Posted at {{ post.create_dt | date:'A g:i, jS M, Y'}}</p>
                     <p>
                         {{ post.content | safe }}
                     </p>

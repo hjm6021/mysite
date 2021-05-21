@@ -15,7 +15,8 @@ urlpatterns = [
 
     # investment/python/1
     # path("<slug:category_slug>/<int:post_id>/", views.detail, name='detail'),
-    re_path(r'^(?P<category_slug>[-\w]+)/(?P<post_id>\d+)/$', views.detail, name="detail"), 
+    # re_path(r'^(?P<category_slug>[-\w]+)/(?P<post_id>\d+)/$', views.detail, name="detail"), 
+    re_path(r'^(?P<category_slug>[-\w]+)/(?P<pk>\d+)/$', views.PostCountHitDetailView.as_view(), name="detail"),
 
     # investment/1/edit
     path("<int:post_id>/edit/", views.edit, name='edit'),

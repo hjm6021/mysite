@@ -3,6 +3,7 @@ from investment.models import Post, Category
 from django.core.paginator import Paginator
 from django.conf import settings
 from .forms import PostForm
+from hitcount.views import HitCountDetailView
 
 def get_number_of_rows():
     number_of_rows = {}
@@ -59,6 +60,33 @@ def list(request, category_slug):
 
     return render(request, template_name, context)
 
+class PostCountHitDetailView(HitCountDetailView):
+    model = Post        # your model goes here
+    count_hit = True    # set to True if you want it to try and count the hit
+    template_name = "investment/investment_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # self.kwargs는 urls.py로부터 받아온 값
+        post_id = self.kwargs['pk']
+        category_slug = self.kwargs['category_slug']
+        
+        # DB로부터 데이터 획득
+        latest_category_list = Category.objects.all().order_by("-create_dt")
+        category = Category.objects.get(slug=category_slug)
+        post = Post.objects.get(id=post_id)
+
+        context = {"latest_category_list":latest_category_list, "post":post, "number":get_number_of_rows()}
+
+        # Disqus 세팅
+        context['disqus_short'] = f"{settings.DISQUS_SHORTNAME}"
+        context['disqus_id'] = f"post-{category.slug}-{post.id}"
+        context['disqus_url'] = f"{settings.DISQUS_MY_DOMAIN}{post.get_absolute_url()}"
+        context['disqus_title'] = f"{post.title}"
+        return context
+
+"""
 def detail(request, category_slug, post_id):
     # 템플릿 지정
     template_name = "investment/investment_detail.html"
@@ -77,6 +105,7 @@ def detail(request, category_slug, post_id):
     context['disqus_title'] = f"{post.title}"
 
     return render(request, template_name, context)
+"""
 
 def add(request):
     # 템플릿 지정

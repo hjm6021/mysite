@@ -1,9 +1,10 @@
 from django.db import models
 from django.urls import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
+from hitcount.models import HitCountMixin
 
 # Create your models here.
-class Post(models.Model):
+class Post(models.Model, HitCountMixin):
     title = models.CharField(verbose_name='TITLE', max_length=50)
     category_id = models.ForeignKey("Category", on_delete=models.CASCADE)
     description = models.CharField("DESCRIPTION", max_length=100, blank=True)

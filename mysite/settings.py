@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'accounts',
     'ckeditor',
     'ckeditor_uploader',
+    'hitcount',
 ]
 
 MIDDLEWARE = [
@@ -171,3 +172,7 @@ CKEDITOR_CONFIGS = {
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
+
+# session life cycle 1200 sec
+SESSION_COOKIE_AGE = 1200
+SESSION_SAVE_EVERY_REQUEST = True
