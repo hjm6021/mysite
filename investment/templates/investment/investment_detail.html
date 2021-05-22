@@ -32,8 +32,8 @@
                         {{ post.content | safe }}
                     </p>
                     {% if user.is_authenticated %}
-                        <button type="button" class="btn btn-outline-primary"><a href="{% url 'investment:edit' post.id%}">EDIT</a></button>
-                        <button type="button" class="btn btn-outline-primary"><a href="{% url 'investment:delete' post.id%}">DELETE</a></button>
+                        <a class="btn btn-outline-primary" href="{% url 'investment:edit' post.id %}">EDIT</a>
+                        <a class="btn btn-outline-primary" href="{% url 'investment:delete' post.id %}" onclick="return confirm('Are you sure you want to delete this?');">DELETE</a>
                     {% endif %}
                     <span class="d-block text-right tm-color-primary">{{ post.category_id.name }}</span>
                 </div>
