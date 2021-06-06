@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Medicine</title>
+{% endblock %}
+
+{% block header %}
+<header class="tm-header" id="tm-header">
+    <div class="tm-header-wrapper">
+        <div class="tm-site-header"><a href="{% url 'medicine:index' %}">
+            <h1 class="text-center">Medicine</h1>
+        </a></div>
+        <nav class="tm-nav" id="tm-nav">            
+            <ul>
+                <div class="tm-mb-35">
+                    <a rel="nofollow" href="{% url 'home' %}" class="tm-nav-link">Blog Home</a>
+                </div>
+            </ul>
+        </nav>
+    </div>
+</header> 
+{% endblock %}

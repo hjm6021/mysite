@@ -27,7 +27,7 @@ SECRET_KEY = secret["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-LOCAL = False
+LOCAL = True
 
 if LOCAL:
     DEBUG = True
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'study',
     'investment',
+    'medicine',
     'accounts',
     'ckeditor',
     'ckeditor_uploader',

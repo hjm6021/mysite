@@ -1,0 +1,16 @@
+{% extends "medicine/medicine_base.html" %}
+
+
+{% block content %}
+    <div class="container-fluid">
+        <main class="tm-main"> 
+            <a href="{% url 'medicine:take' %}">Take a tablet</a>
+
+            {% for date in dates%}
+            <ul><li>
+                {% if date.check_medicine %}
+                    <strong>복용완료</strong>  {{ date.medicine_dt }}
+                {% endif %}
+            </li></ul>
+            {% endfor %}
+{% endblock %}

@@ -30,6 +30,12 @@
                     <i class="far fa-comments"></i>
                     About Me
                 </a></li>
+                {% if user.is_authenticated %}
+                <li class="tm-nav-item"><a href="{% url 'medicine:index' %}" class="tm-nav-link">
+                    <i class="far fa-comments"></i>
+                    Medicine
+                </a></li>
+                {% endif %}
             </ul>
         </nav>
     </div>

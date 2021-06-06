@@ -41,13 +41,19 @@
                 </div>
                 <div class="tm-paging-wrapper">
                     <span class="d-inline-block mr-3">Page</span>
+                    <!--<span class="d-inline-block mr-3">Page {{ posts.number }} / {{ posts.paginator.num_pages }}</span>-->
                     <nav class="tm-paging-nav d-inline-block">
                         <ul>
+                            
                             {% for index in posts.paginator.page_range %}
                             <li class="tm-paging-item">
                                 <a href="?page={{ index }}" class="mb-2 tm-btn tm-paging-link">{{ index }}</a>
                             </li>
                             {% endfor %}
+                            <!--<form action="/study/" method="GET">
+                                <input type="number" name="page" size="2">
+                                <button type="submit" class="mb-2 tm-btn tm-btn-primary tm-prev-next tm-mr-20">Move</a>
+                            </form>-->
                         </ul>
                     </nav>
                 </div>                

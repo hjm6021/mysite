@@ -27,6 +27,7 @@ urlpatterns = [
     path('study/', include('study.urls')),
     path('investment/', include('investment.urls')),
     path('about/', views.AboutView.as_view(), name="about"),
+    path('medicine/', include('medicine.urls')),
 ]
 
 if settings.LOCAL:
