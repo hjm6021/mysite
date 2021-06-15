@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from investment.models import Post, Category
 from django.core.paginator import Paginator
 from django.conf import settings
 from .forms import PostForm
 from hitcount.views import HitCountDetailView
+from django.contrib.auth.decorators import login_required
 
 def get_number_of_rows():
     number_of_rows = {}
@@ -106,10 +108,8 @@ def detail(request, category_slug, post_id):
 
     return render(request, template_name, context)
 """
-
+@login_required(login_url="/accounts/signin")
 def add(request):
-    if not request.user.is_authenticated:
-        return redirect("investment:index")
     # 템플릿 지정
     template_name = "investment/investment_add.html"
 
@@ -130,6 +130,7 @@ def add(request):
 
     return render(request, template_name, context)
 
+@login_required(login_url="/accounts/signin")
 def edit(request, post_id):
     if not request.user.is_authenticated:
         return redirect("investment:index")
@@ -159,7 +160,7 @@ def edit(request, post_id):
     context = {"latest_category_list":latest_category_list, "form":form, "number":get_number_of_rows()}
     return render(request, template_name, context)
 
-
+@login_required(login_url="/accounts/signin")
 def delete(request, post_id):
     if not request.user.is_authenticated:
         return redirect("investment:index")
