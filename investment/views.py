@@ -132,8 +132,6 @@ def add(request):
 
 @login_required(login_url="/accounts/signin")
 def edit(request, post_id):
-    if not request.user.is_authenticated:
-        return redirect("investment:index")
     # 수정할 포스트 획득
     post = get_object_or_404(Post, pk=post_id)
 
@@ -162,8 +160,6 @@ def edit(request, post_id):
 
 @login_required(login_url="/accounts/signin")
 def delete(request, post_id):
-    if not request.user.is_authenticated:
-        return redirect("investment:index")
     post = get_object_or_404(Post, pk=post_id)
     post.delete()
     return redirect("investment:index")
