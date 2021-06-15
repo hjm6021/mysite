@@ -109,6 +109,7 @@ def detail(request, category_slug, post_id):
 """
 def add(request):
     if not request.user.is_authenticated:
+        request.session['error_msg'] = "Invalid Access"
         return redirect("study:index")
     # 템플릿 지정
     template_name = "study/study_add.html"
@@ -132,6 +133,7 @@ def add(request):
 
 def edit(request, post_id):
     if not request.user.is_authenticated:
+        request.session['error_msg'] = "Invalid Access"
         return redirect("study:index")
     # 수정할 포스트 획득
     post = get_object_or_404(Post, pk=post_id)
@@ -162,6 +164,7 @@ def edit(request, post_id):
 
 def delete(request, post_id):
     if not request.user.is_authenticated:
+        request.session['error_msg'] = "Invalid Access"
         return redirect("study:index")
     post = get_object_or_404(Post, pk=post_id)
     post.delete()
