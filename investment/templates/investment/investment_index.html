@@ -3,11 +3,6 @@
 {% load hitcount_tags %}
 
 {% block content %}
-    {% if request.session.error_msg %}
-    <script>
-        window.alert("{{ request.session.error_msg }}")
-    </script>
-    {% endif %}
     <div class="container-fluid">
         <main class="tm-main"> 
             <div class="row tm-row">
