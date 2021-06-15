@@ -21,7 +21,7 @@ def signin(request):
             auth.login(request, user)
             return redirect(next)
         else:
-            return render(request, 'signin.html', {'error': 'username or password is incorrect.'})
+            return render(request, 'signin.html', {'error': 'username or password is incorrect.', 'next':next})
     # Get 
     else:
         next = request.GET['next']

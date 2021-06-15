@@ -7,6 +7,8 @@ from .forms import PostForm
 from hitcount.views import HitCountDetailView
 from django.contrib.auth.decorators import login_required
 
+login_url = "/accounts/signin"
+
 def get_number_of_rows():
     number_of_rows = {}
     latest_category_list = Category.objects.all().order_by("-create_dt")
@@ -108,7 +110,7 @@ def detail(request, category_slug, post_id):
 
     return render(request, template_name, context)
 """
-@login_required(login_url="/accounts/signin")
+@login_required(login_url=login_url)
 def add(request):
     # 템플릿 지정
     template_name = "investment/investment_add.html"
@@ -130,7 +132,7 @@ def add(request):
 
     return render(request, template_name, context)
 
-@login_required(login_url="/accounts/signin")
+@login_required(login_url=login_url)
 def edit(request, post_id):
     # 수정할 포스트 획득
     post = get_object_or_404(Post, pk=post_id)
@@ -158,7 +160,7 @@ def edit(request, post_id):
     context = {"latest_category_list":latest_category_list, "form":form, "number":get_number_of_rows()}
     return render(request, template_name, context)
 
-@login_required(login_url="/accounts/signin")
+@login_required(login_url=login_url)
 def delete(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     post.delete()
