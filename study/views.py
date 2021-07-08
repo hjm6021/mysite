@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 login_url = "/accounts/signin"
 
-def get_number_of_rows():
+def get_number_of_posts():
     number_of_rows = {}
     latest_category_list = Category.objects.all().order_by("-create_dt")
     for category in latest_category_list:
@@ -36,7 +36,7 @@ def index(request):
     # Get으로 획득한 페이지번호로 해당하는 수의 포스트를 획득
     posts = paginator.get_page(page)
     
-    context = {"latest_category_list":latest_category_list, "posts":posts, "number":get_number_of_rows()}
+    context = {"latest_category_list":latest_category_list, "posts":posts, "number":get_number_of_posts()}
 
     return render(request, template_name, context)
 
@@ -59,7 +59,7 @@ def list(request, category_slug):
     # Get으로 획득한 페이지번호로 해당하는 수의 포스트를 획득
     posts = paginator.get_page(page)
 
-    context = {"latest_category_list":latest_category_list, "posts":posts, "number":get_number_of_rows()}
+    context = {"latest_category_list":latest_category_list, "posts":posts, "number":get_number_of_posts()}
 
     return render(request, template_name, context)
 
@@ -81,7 +81,7 @@ class PostCountHitDetailView(HitCountDetailView):
         category = Category.objects.get(slug=category_slug)
         post = Post.objects.get(id=post_id)
 
-        context = {"latest_category_list":latest_category_list, "post":post, "number":get_number_of_rows()}
+        context = {"latest_category_list":latest_category_list, "post":post, "number":get_number_of_posts()}
 
         # Disqus 세팅
         context['disqus_short'] = f"{settings.DISQUS_SHORTNAME}"
@@ -100,7 +100,7 @@ def detail(request, category_slug, post_id):
     category = Category.objects.get(slug=category_slug)
     post = Post.objects.get(id=post_id)
 
-    context = {"latest_category_list":latest_category_list, "post":post, "number":get_number_of_rows()}
+    context = {"latest_category_list":latest_category_list, "post":post, "number":get_number_of_posts()}
 
     # Disqus 세팅
     context['disqus_short'] = f"{settings.DISQUS_SHORTNAME}"
@@ -128,7 +128,7 @@ def add(request):
     else:
         form = PostForm()
 
-    context = {"latest_category_list":latest_category_list, "form":form, "number":get_number_of_rows()}
+    context = {"latest_category_list":latest_category_list, "form":form, "number":get_number_of_posts()}
 
     return render(request, template_name, context)
 
@@ -157,7 +157,7 @@ def edit(request, post_id):
         initial = {'title':post.title, 'category':post.category_id, 'description':post.description, 'content':post.content}
         form = PostForm(initial=initial)
 
-    context = {"latest_category_list":latest_category_list, "form":form, "number":get_number_of_rows()}
+    context = {"latest_category_list":latest_category_list, "form":form, "number":get_number_of_posts()}
     return render(request, template_name, context)
 
 @login_required(login_url=login_url)

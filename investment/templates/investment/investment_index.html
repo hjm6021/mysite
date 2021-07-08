@@ -44,9 +44,11 @@
                     <nav class="tm-paging-nav d-inline-block">
                         <ul>
                             {% for index in posts.paginator.page_range %}
-                            <li class="tm-paging-item">
-                                <a href="?page={{ index }}" class="mb-2 tm-btn tm-paging-link">{{ index }}</a>
-                            </li>
+                                {% if posts.number|add:-3 < index and index < posts.number|add:3 %}
+                                <li class="tm-paging-item">
+                                    <a href="?page={{ index }}" class="mb-2 tm-btn tm-paging-link">{{ index }}</a>
+                                </li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     </nav>
