@@ -34,7 +34,7 @@ if LOCAL:
     ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 else:
     DEBUG = False
-    ALLOWED_HOSTS = ["52.194.188.73","www.jmhan-blog.com","jmhan-blog.com"]
+    ALLOWED_HOSTS = ["18.179.12.99","www.jmhan-blog.com","jmhan-blog.com"]
 
 # Application definition
 
@@ -157,7 +157,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Disqus
 DISQUS_SHORTNAME = "mysite-rzjwilotv5"
-DISQUS_MY_DOMAIN = "http://52.194.188.73/"
+DISQUS_MY_DOMAIN = "http://www.jmhan-blog.com/"
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
