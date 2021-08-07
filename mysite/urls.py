@@ -20,14 +20,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path('', views.HomeView.as_view(), name="home"),
     path('ckeditor', include('ckeditor_uploader.urls')),
-    path('accounts/', include('accounts.urls')),
-    path('study/', include('study.urls')),
-    path('investment/', include('investment.urls')),
-    path('about/', views.AboutView.as_view(), name="about"),
-    path('medicine/', include('medicine.urls')),
+    path('accounts', include('accounts.urls')),
+    path('study', include('study.urls')),
+    path('investment', include('investment.urls')),
+    path('about', views.AboutView.as_view(), name="about"),
+    path('medicine', include('medicine.urls')),
 ]
 
 if settings.LOCAL:
