@@ -177,3 +177,6 @@ MEDIA_URL = '/media/'
 # session life cycle 60s * 60m * 24h
 SESSION_COOKIE_AGE = 86400
 SESSION_SAVE_EVERY_REQUEST = True
+
+
+SILENCED_SYSTEM_CHECKS = ['urls.W002']

@@ -44,5 +44,16 @@ https://templatemo.com/tm-553-xtra-blog
     </div>
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/templatemo-script.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+            sideShow = document.querySelector('.side-show')
+            tmHeader = document.querySelector('.tm-header')
+    
+            sideShow.addEventListener('click', (event) => {
+                console.log(sideShow, tmHeader)
+                tmHeader.style.left = `0px`
+            })
+        })
+    </script>
 </body>
 </html>

@@ -437,6 +437,10 @@ a:hover figcaption { color: #056767; }
 @media (max-width: 1540px) {
     .tm-header { width: 320px; }
 
+    .side-show {
+        left: -40px;
+    }
+
     .tm-main {
         margin-left: 320px;
         width: calc(100% - 320px);
@@ -473,6 +477,12 @@ a:hover figcaption { color: #056767; }
         width: 320px;
         left: -320px;        
         transition: all 0.3s ease;
+    }
+
+    .side-show {
+        background-color: #0CC;
+        color: white;
+        left: 0px;
     }
 
     .tm-header.show { left: 0; }
