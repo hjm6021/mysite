@@ -5,6 +5,9 @@
 __pycache__
 db.sqlite3
 media
+.vscode
+mysite_uwsgi.ini
+uwsgi_params
 
 # Django Secret Key
 secret_key.json
