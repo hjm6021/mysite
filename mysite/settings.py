@@ -100,9 +100,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'mysite',
-            'USER': 'hjm6021',
-            'PASSWORD': 'hanjm6021',
+            'NAME': secret["DB_name"],
+            'USER': secret["DB_user"],
+            'PASSWORD': secret["DB_password"],
             'HOST': 'localhost',
             'PORT': '3306',
             'OPTIONS': {
