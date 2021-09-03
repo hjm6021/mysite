@@ -9,11 +9,11 @@ urlpatterns = [
     # study/add
     path("/add", views.add, name='add'),
 
-    # study/edit/post_id
-    path("/edit/<int:post_id>", views.edit, name='edit'),
+    # study/post_id/edit
+    path("/<int:post_id>/edit", views.edit, name='edit'),
 
-    # study/delete/post_id
-    path("/delete/<int:post_id>", views.delete, name='delete'),
+    # study/post_id/delete
+    path("/<int:post_id>/delete", views.delete, name='delete'),
 
     # study/python
     # path("<slug:category_slug>/", views.list, name="list"),

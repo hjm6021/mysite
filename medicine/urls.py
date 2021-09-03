@@ -3,7 +3,7 @@ from medicine import views
 
 app_name = "medicine"
 urlpatterns = [
-    # investment/
+    # medicine/
     path('', views.index, name="index"),
     path('take/', views.take, name="take")
 ]
